@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
 import './LocalToken.sol';
 import 'zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol';
@@ -14,23 +14,14 @@ contract LocalTokenCrowdsale is CappedCrowdsale, RefundableCrowdsale {
 
   // Token Distribution
   // =============================
-
   uint256 public maxTokens = 2 * (10 ** 9) * (10 ** 18); 					// Total: 2 billion Local Tokens
   uint256 public tokensForTeam = (10 ** 9) * (10 ** 18);					// 1 billion tokens
   uint256 public totalTokensForSale = 900 * (10 ** 6) * (10 ** 18); 		// 900 million tokens to be sold in crowdsale
   uint256 public totalTokensForSalePreICO = 500 * (10 ** 6) * (10 ** 18); 	// 500 million tokens out of 900 million
   uint256 public tokensForCommDev = 10 * (10 ** 6) * (10 ** 18); 			// 10 million tokens: community development
-  uint256 public tokensForEcosystem = 50 * (10 ** 6) * (10 ** 18); 			// 50 million tokens: reserved for unexpected/ miscellaneous costs
+  uint256 public tokensForAirdrop = 20 * (10 ** 6) * (10 ** 18);      // 20 million tokens: community engagement
   uint256 public tokensForCommEng = 10 * (10 ** 6) * (10 ** 18); 			// 10 million tokens: community engagement
   uint256 public tokensForCommFaucet = 10 * (10 ** 6) * (10 ** 18); 		// 10 million tokens: community faucet
-
-
-  uint256 public maxTokens = 2 * (10 ** 9) * (10 ** 18); //Total: 2 billion Local Tokens
-  uint256 public tokensForEcosystem = 20000000000000000000;
-  uint256 public tokensForTeam = (10 ** 18)0;
-  uint256 public tokensForBounty = (10 ** 18)0;
-  uint256 public totalTokensForSale = 60000000000000000000; // 60 HTs will be sold in Crowdsale
-  uint256 public totalTokensForSalePreICO = 20000000000000000000; // 20 out of 60 HTs will be sold during PreICO
   // ==============================
 
   // Amount raised in PreICO
@@ -119,7 +110,7 @@ contract LocalTokenCrowdsale is CappedCrowdsale, RefundableCrowdsale {
   // Finish: Mint Extra Tokens as needed before finalizing the Crowdsale.
   // ====================================================================
 
-  function finish(address _teamFund, address _ecosystemFund, address _bountyFund) public onlyOwner {
+  function finish(address _teamFund, address _commDevFund, address _airdropFund, address _commEngFund, address _commFaucetFund) public onlyOwner {
 
       require(!isFinalized);
       uint256 alreadyMinted = token.totalSupply();
@@ -127,12 +118,14 @@ contract LocalTokenCrowdsale is CappedCrowdsale, RefundableCrowdsale {
 
       uint256 unsoldTokens = totalTokensForSale - alreadyMinted;
       if (unsoldTokens > 0) {
-        tokensForEcosystem = tokensForEcosystem + unsoldTokens;
+        tokensForAirdrop = tokensForAirdrop + unsoldTokens;
       }
 
-      token.mint(_teamFund,tokensForTeam);
-      token.mint(_ecosystemFund,tokensForEcosystem);
-      token.mint(_bountyFund,tokensForBounty);
+      token.mint(_teamFund, tokensForTeam);
+      token.mint(_commDevFund, tokensForCommDev);
+      token.mint(_airdropFund, tokensForAirdrop);
+      token.mint(_commEngFund, tokensForCommEng);
+      token.mint(_commFaucetFund, tokensForCommFaucet);
       finalize();
   }
   // ===============================

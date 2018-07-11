@@ -92,7 +92,8 @@ contract('LocalTokenCrowdsale', function(accounts) {
             var vaultAddress = await instance.vault.call();
             let vaultBalance = await web3.eth.getBalance(vaultAddress);
 
-            await instance.finish(accounts[0], accounts[1], accounts[2]);
+            // teamFund, commDevFund, airdropFund, commEngFund, commFaucetFund
+            await instance.finish(accounts[0], accounts[1], accounts[2], accounts[3], accounts[4]);
 
             let newBalanceOfBeneficiary = await web3.eth.getBalance(accounts[9]);
             newBalanceOfBeneficiary = newBalanceOfBeneficiary.toNumber();

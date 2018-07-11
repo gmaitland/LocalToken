@@ -11,8 +11,17 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "description": "",
   "dependencies": {
     "zeppelin-solidity": "^1.5.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oahia01/LocalToken.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oahia01/LocalToken/issues"
+  },
+  "homepage": "https://github.com/oahia01/LocalToken#readme",
+  "description": ""
 }
