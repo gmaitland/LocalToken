@@ -23,8 +23,8 @@ contract('LocalTokenCrowdsale', function(accounts) {
         LocalTokenCrowdsale.deployed().then(async function(instance) {
             const data = await instance.sendTransaction({ from: accounts[7], value: web3.toWei(1, "ether")});
             const tokenAddress = await instance.token.call();
-            const LocalToken = LocalToken.at(tokenAddress);
-            const tokenAmount = await LocalToken.balanceOf(accounts[7]);
+            const localToken = LocalToken.at(tokenAddress);
+            const tokenAmount = await localToken.balanceOf(accounts[7]);
             assert.equal(tokenAmount.toNumber(), 5000000000000000000, 'The sender didn\'t receive the tokens as per PreICO rate');
             done();
        });
@@ -66,8 +66,8 @@ contract('LocalTokenCrowdsale', function(accounts) {
         LocalTokenCrowdsale.deployed().then(async function(instance) {
             const data = await instance.sendTransaction({ from: accounts[2], value: web3.toWei(1.5, "ether")});
             const tokenAddress = await instance.token.call();
-            const LocalToken = LocalToken.at(tokenAddress);
-            const tokenAmount = await LocalToken.balanceOf(accounts[2]);
+            const localToken = LocalToken.at(tokenAddress);
+            const tokenAmount = await localToken.balanceOf(accounts[2]);
             assert.equal(tokenAmount.toNumber(), 3000000000000000000, 'The sender didn\'t receive the tokens as per ICO rate');
             done();
        });
