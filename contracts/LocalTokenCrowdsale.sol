@@ -9,7 +9,7 @@ contract LocalTokenCrowdsale is CappedCrowdsale, RefundableCrowdsale {
   // ICO
   // ============
   enum CrowdsaleStage { PreICO, ICO }
-  CrowdsaleStage public stage = CrowdsaleStage.PreICO; // By default it's Pre Sale
+  CrowdsaleStage public stage = CrowdsaleStage.ICO;
   // =============
 
   // Token Distribution
