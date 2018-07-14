@@ -17,7 +17,7 @@ contract LocalTokenCrowdsale is CappedCrowdsale, RefundableCrowdsale {
   uint256 public maxTokens = 2 * (10 ** 9) * (10 ** 18); 					// Total: 2 billion Local Tokens
   uint256 public tokensForTeam = (10 ** 9) * (10 ** 18);					// 1 billion tokens
   uint256 public totalTokensForSale = 900 * (10 ** 6) * (10 ** 18); 		// 900 million tokens to be sold in crowdsale
-  uint256 public totalTokensForSalePreICO = 500 * (10 ** 6) * (10 ** 18); 	// 500 million tokens out of 900 million
+  uint256 public totalTokensForSalePreICO = 0;
   uint256 public tokensForCommDev = 10 * (10 ** 6) * (10 ** 18); 			// 10 million tokens: community development
   uint256 public tokensForAirdrop = 20 * (10 ** 6) * (10 ** 18);      // 20 million tokens: community engagement
   uint256 public tokensForCommEng = 10 * (10 ** 6) * (10 ** 18); 			// 10 million tokens: community engagement
@@ -66,9 +66,9 @@ contract LocalTokenCrowdsale is CappedCrowdsale, RefundableCrowdsale {
       stage = _stage;
 
       if (stage == CrowdsaleStage.PreICO) {
-        setCurrentRate(5);	// TODO: set how many LOTs per 1 ETH
+        setCurrentRate(100000000);	// 100M LOTs per ETH
       } else if (stage == CrowdsaleStage.ICO) {
-        setCurrentRate(2);	// TODO: set how many LOTs per 1 ETH
+        setCurrentRate(100000000);	// 100M LOTs per ETH
       }
   }
 
@@ -130,9 +130,9 @@ contract LocalTokenCrowdsale is CappedCrowdsale, RefundableCrowdsale {
   }
   // ===============================
 
-  // REMOVE THIS FUNCTION ONCE YOU ARE READY FOR PRODUCTION
+  // REMOVE THIS FUNCTION ONCE READY FOR PRODUCTION
   // USEFUL FOR TESTING `finish()` FUNCTION
-  function hasEnded() public view returns (bool) {
-    return true;
-  }
+  // function hasEnded() public view returns (bool) {
+  //   return true;
+  // }
 }

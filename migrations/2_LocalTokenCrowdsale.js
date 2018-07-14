@@ -1,14 +1,14 @@
 var LocalTokenCrowdsale = artifacts.require("./LocalTokenCrowdsale.sol");
 
 module.exports = function(deployer) {
-  const startTime = Math.round((new Date(Date.now() - 86400000).getTime())/1000); // Yesterday
-  const endTime = Math.round((new Date().getTime() + (86400000 * 20))/1000); // Today + 20 days
+  const startTime = Math.round((new Date(Date.now()).getTime())/1000);      // now
+  const endTime = Math.round((new Date().getTime() + (86400000 * 7))/1000); // Today + 7 days
   deployer.deploy(LocalTokenCrowdsale, 
     startTime, 
     endTime,
-    5, 
-    "0xD88335DC7dc1Efbb96Ac2818c7eEeeeaf876F0dE", // Replace this wallet address with the last one (10th account) from Ganache UI. This will be treated as the beneficiary address. 
-    2000000000000000000, // 2 ETH
-    500000000000000000000 // 500 ETH
+    100000000, 
+    "0x33571Ce1c5d38497B8AdE5480fABeB33a222Da7c", // beneficiary address. 
+    100000000000000000000000000, // 1 ETH
+    900000000000000000000000000 // 9 ETH
   );
 };
